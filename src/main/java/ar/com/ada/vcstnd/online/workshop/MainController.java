@@ -19,14 +19,14 @@ import java.util.stream.Collectors;
 @RestController
 public class MainController implements CommandLineRunner {
 
-    private List<MovieOrSerie> moviesOrSeriesDataBaseFake;
+    private List<MovieOrSerie> dataBaseFake;
 
     @GetMapping({ "", "/" }) @CrossOrigin(origins = "*")
     public ResponseEntity<List<MovieOrSerie>> getAllContent(
             @RequestParam Optional<Integer> year,
             @RequestParam Optional<String> type) {
 
-        List<MovieOrSerie> movieOrSeries = moviesOrSeriesDataBaseFake
+        List<MovieOrSerie> movieOrSeries = dataBaseFake
                 .stream()
                 .filter(getFilterConditions(year, type))
                 .collect(Collectors.toList());
@@ -37,7 +37,7 @@ public class MainController implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        moviesOrSeriesDataBaseFake = mapper.readValue(
+        dataBaseFake = mapper.readValue(
                 new File("database.json"),
                 new TypeReference<List<MovieOrSerie>>() {
                 }
