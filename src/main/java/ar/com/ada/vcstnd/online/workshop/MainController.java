@@ -49,10 +49,12 @@ public class MainController implements CommandLineRunner {
         List<Predicate<MovieOrSerie>> filterConditions = new ArrayList<Predicate<MovieOrSerie>>();
 
         // se agrega la condicion de busqueda si existe el filtro year
-        filterConditions.add(movieOrSerie -> !year.isPresent() || movieOrSerie.getYear().equals(year.get()));
+        if (year.isPresent())
+            filterConditions.add(movieOrSerie -> movieOrSerie.getYear().equals(year.get()));
 
         // se agrega la condicion de busqueda si existe el filtro type
-        filterConditions.add(movieOrSerie -> !type.isPresent() || movieOrSerie.getType().equals(type.get()));
+        if (type.isPresent())
+            filterConditions.add(movieOrSerie -> movieOrSerie.getType().equals(type.get()));
 
         // Se devuelve el contenedor con las condiciones definidas
         return filterConditions.stream().reduce(movieOrSerie -> true, Predicate::and);
