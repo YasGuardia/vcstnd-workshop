@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 @RestController
 public class MainController implements CommandLineRunner {
 
+    // se definie una varable de clase para cargar los datos de un archivo
+    // esto hace la emulacion de una base de datos.
     private List<MovieOrSerie> dataBaseFake;
 
     @GetMapping({ "", "/" }) @CrossOrigin(origins = "*")
@@ -26,6 +28,8 @@ public class MainController implements CommandLineRunner {
             @RequestParam Optional<Integer> year,
             @RequestParam Optional<String> type) {
 
+        // se recorre la lista de series y/o peliculas, se aplica el filtro y el
+        // resultdo lo guarda en una lista nueva (movieOrSeries)
         List<MovieOrSerie> movieOrSeries = dataBaseFake
                 .stream()
                 .filter(getFilterConditions(year, type))
@@ -36,7 +40,11 @@ public class MainController implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // este objete permite convertir del archivo a un objeto java
         ObjectMapper mapper = new ObjectMapper();
+
+        // proceso que leee el archivo donde esta el listado de peliculas y serias
+        // y lo almacena en la lista dataBaseFake
         dataBaseFake = mapper.readValue(
                 new File("database.json"),
                 new TypeReference<List<MovieOrSerie>>() {
