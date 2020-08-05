@@ -44,17 +44,15 @@ public class MainController implements CommandLineRunner {
         );
     }
 
-    private Predicate<MovieOrSerie> getFilterConditions(Optional<Integer> year, Optional<String> type) {
+    private Predicate<MovieOrSerie> getFilterConditions(Optional<Integer> yearOpt, Optional<String> typeOpt) {
         // Se arme el contenedor que tendrá las condiciones de busqueda, inicialmente esta vacio
         List<Predicate<MovieOrSerie>> filterConditions = new ArrayList<Predicate<MovieOrSerie>>();
 
         // se agrega la condicion de busqueda si existe el filtro year
-        if (year.isPresent())
-            filterConditions.add(movieOrSerie -> movieOrSerie.getYear().equals(year.get()));
+        yearOpt.ifPresent(year -> filterConditions.add(movieOrSerie -> movieOrSerie.getYear().equals(year)));
 
         // se agrega la condicion de busqueda si existe el filtro type
-        if (type.isPresent())
-            filterConditions.add(movieOrSerie -> movieOrSerie.getType().equals(type.get()));
+        typeOpt.ifPresent(type -> filterConditions.add(movieOrSerie -> movieOrSerie.getType().equals(type)));
 
         // Se devuelve el contenedor con las condiciones definidas
         return filterConditions.stream().reduce(movieOrSerie -> true, Predicate::and);
