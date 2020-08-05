@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Harry Potter y la cámara secreta",
+    "year": 2002,
+    "type": "pelicula",
+    "gender": "Ciencia ficción",
+    "imageUrl": "https://assets.cinepolisklic.com/images/ae0dacc3e95640ec8a3974efba7fe57d_250X375.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Star Wars: The Last Jedi",
+    "year": 2017,
+    "type": "pelicula",
+    "gender": "Ciencia ficción",
+    "imageUrl": "https://i.pinimg.com/originals/26/a8/ab/26a8ab88a1ae4386ef6c051dbbe8b2ed.jpg"
+  },
+  {
+    "id": 3,
+    "title": "CSI: Miami",
+    "year": 2002,
+    "type": "serie",
+    "gender": "acción",
+    "imageUrl": "https://imagenes.gatotv.com/categorias/programas/posters/csi_miami.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Dark",
+    "year": 2017,
+    "type": "serie",
+    "gender": "Ciencia ficción",
+    "imageUrl": "https://www.awesomepostersonline.com/uploads/2018-06-01/b1fb1ea4/f336f3fb80e.jpg"
+  }
+]
