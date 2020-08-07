@@ -40,7 +40,7 @@ public class MainController {
         return ResponseEntity.ok(movieOrSeries);
     }
 
-    public void run() throws Exception {
+    private void run() throws Exception {
         // este objete permite convertir del archivo a un objeto java
         ObjectMapper mapper = new ObjectMapper();
 
