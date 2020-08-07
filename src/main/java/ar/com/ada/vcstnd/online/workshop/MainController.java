@@ -34,13 +34,13 @@ public class MainController {
         // resultdo lo guarda en una lista nueva (movieOrSeries)
         List<MovieOrSerie> movieOrSeries = dataBaseFake
                 .stream()
-                .filter(getFilterConditions(year, type))
+                .filter(getFilterRules(year, type))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(movieOrSeries);
     }
 
-    public void run(String... args) throws Exception {
+    public void run() throws Exception {
         // este objete permite convertir del archivo a un objeto java
         ObjectMapper mapper = new ObjectMapper();
 
@@ -53,7 +53,7 @@ public class MainController {
         );
     }
 
-    private Predicate<MovieOrSerie> getFilterConditions(Optional<Integer> yearOpt, Optional<String> typeOpt) {
+    private Predicate<MovieOrSerie> getFilterRules(Optional<Integer> yearOpt, Optional<String> typeOpt) {
         // Se arme el contenedor que tendrá las condiciones de busqueda, inicialmente esta vacio
         List<Predicate<MovieOrSerie>> filterConditions = new ArrayList<Predicate<MovieOrSerie>>();
 
