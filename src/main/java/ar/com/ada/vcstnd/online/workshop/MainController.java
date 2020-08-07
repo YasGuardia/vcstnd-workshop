@@ -2,7 +2,6 @@ package ar.com.ada.vcstnd.online.workshop;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @RestController
-public class MainController implements CommandLineRunner {
+public class MainController {
 
     // se definie una varable de clase para cargar los datos de un archivo
     // esto hace la emulacion de una base de datos.
@@ -27,6 +26,9 @@ public class MainController implements CommandLineRunner {
     public ResponseEntity<List<MovieOrSerie>> getAllContent(
             @RequestParam Optional<Integer> year,
             @RequestParam Optional<String> type) {
+        
+        // se ejecuta la carga de la propiedad dataBaseFake con los datos del archivo database.json
+        this.run();
 
         // se recorre la lista de series y/o peliculas, se aplica el filtro y el
         // resultdo lo guarda en una lista nueva (movieOrSeries)
@@ -38,7 +40,6 @@ public class MainController implements CommandLineRunner {
         return ResponseEntity.ok(movieOrSeries);
     }
 
-    @Override
     public void run(String... args) throws Exception {
         // este objete permite convertir del archivo a un objeto java
         ObjectMapper mapper = new ObjectMapper();
